@@ -1,9 +1,23 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Sprout, Tractor, BarChart3, Users, Play, Settings, Coins, Trophy, MapPin, Calendar } from 'lucide-react';
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { 
+  Sprout, 
+  Tractor, 
+  Coins, 
+  TrendingUp, 
+  Settings,
+  Wheat,
+  Droplets,
+  Sun,
+  CloudRain,
+  Wind,
+  Leaf,
+  TreePine,
+  Apple,
+  Carrot
+} from 'lucide-react';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('farm');
   const [crops] = useState([
     { id: 1, name: 'Wheat', growth: 75, profit: 1250, season: 'Summer' },
     { id: 2, name: 'Corn', growth: 45, profit: 890, season: 'Spring' },
@@ -19,29 +33,51 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-900 via-emerald-800 to-green-900">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-lime-50">
       {/* Header */}
-      <header className="border-b border-green-700/50 backdrop-blur-sm bg-green-900/80">
+      <header className="bg-white/95 backdrop-blur-xl border-b border-green-100 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
-                <Sprout className="w-6 h-6 text-white" />
+          <div className="flex items-center justify-between h-20">
+            <div className="flex items-center space-x-4">
+              <div className="relative">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-600 via-emerald-500 to-lime-500 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Sprout className="w-7 h-7 text-white" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                  <Sun className="w-2.5 h-2.5 text-white" />
+                </div>
               </div>
-              <h1 className="text-2xl font-bold text-white">AgriVerse</h1>
+              <div>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
+                  AgriVerse
+                </h1>
+                <p className="text-sm text-green-600 font-medium">Smart Farm Simulation</p>
+              </div>
             </div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#" className="text-green-300 hover:text-white transition-colors">Farm</a>
-              <a href="#" className="text-green-300 hover:text-white transition-colors">Market</a>
-              <a href="#" className="text-green-300 hover:text-white transition-colors">Equipment</a>
-              <a href="#" className="text-green-300 hover:text-white transition-colors">Community</a>
+            <nav className="hidden lg:flex items-center space-x-8">
+              <a href="#" className="text-gray-700 hover:text-green-600 font-semibold transition-colors relative group">
+                My Farm
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all group-hover:w-full"></span>
+              </a>
+              <a href="#" className="text-gray-700 hover:text-green-600 font-semibold transition-colors relative group">
+                Marketplace
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all group-hover:w-full"></span>
+              </a>
+              <a href="#" className="text-gray-700 hover:text-green-600 font-semibold transition-colors relative group">
+                Equipment
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all group-hover:w-full"></span>
+              </a>
+              <a href="#" className="text-gray-700 hover:text-green-600 font-semibold transition-colors relative group">
+                Weather
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all group-hover:w-full"></span>
+              </a>
             </nav>
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-yellow-400">
-                <Coins className="w-5 h-5" />
-                <span className="font-semibold">$12,450</span>
+              <div className="flex items-center space-x-3 bg-gradient-to-r from-green-100 to-emerald-100 px-4 py-2 rounded-xl border border-green-200">
+                <Coins className="w-5 h-5 text-green-600" />
+                <span className="font-bold text-green-800">$24,750</span>
               </div>
-              <button className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all">
+              <button className="px-6 py-2.5 bg-gradient-to-r from-green-600 via-emerald-500 to-lime-500 text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all font-semibold shadow-md">
                 <Settings className="w-4 h-4" />
               </button>
             </div>
@@ -50,23 +86,64 @@ function App() {
       </header>
 
       {/* Hero Dashboard */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Welcome to Your
-              <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent"> Digital Farm</span>
-            </h2>
-            <p className="text-xl text-green-300 mb-8 max-w-3xl mx-auto">
-              Build, manage, and grow your virtual agricultural empire. Plant crops, manage livestock, 
-              trade in global markets, and become the ultimate farming tycoon.
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <h2 className="text-5xl font-bold bg-gradient-to-r from-green-800 via-emerald-600 to-lime-600 bg-clip-text text-transparent mb-6">
+                Welcome to Your Farm Paradise
+              </h2>
+              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="w-16 h-16 text-yellow-500"
+                >
+                  <Sun className="w-full h-full" />
+                </motion.div>
+              </div>
+            </motion.div>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Cultivate your dreams, harvest success, and build a thriving agricultural empire with smart farming technology and sustainable practices.
             </p>
-          </motion.div>
+            
+            {/* Floating Farm Elements */}
+            <div className="relative mt-12">
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -left-20 top-0 text-green-500"
+              >
+                <Leaf className="w-8 h-8" />
+              </motion.div>
+              <motion.div
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -right-16 top-8 text-emerald-600"
+              >
+                <TreePine className="w-10 h-10" />
+              </motion.div>
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute left-1/4 -top-4 text-red-500"
+              >
+                <Apple className="w-6 h-6" />
+              </motion.div>
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                className="absolute right-1/3 -top-2 text-orange-500"
+              >
+                <Carrot className="w-7 h-7" />
+              </motion.div>
+            </div>
+          </div>
 
           {/* Stats Cards */}
           <div className="grid md:grid-cols-4 gap-6 mb-12">
@@ -74,214 +151,202 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-green-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-700/50"
+              className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-green-200/50 shadow-lg hover:shadow-xl transition-all"
             >
               <div className="flex items-center justify-between mb-4">
-                <MapPin className="w-8 h-8 text-green-400" />
-                <span className="text-2xl font-bold text-white">2.5k</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
+                  <Sprout className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-2xl font-bold text-green-700">12</span>
               </div>
-              <h3 className="text-green-300 text-sm font-medium">Acres Owned</h3>
+              <h3 className="font-semibold text-gray-800 mb-1">Active Crops</h3>
+              <p className="text-sm text-gray-600">Growing strong</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-green-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-700/50"
+              className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-green-200/50 shadow-lg hover:shadow-xl transition-all"
             >
               <div className="flex items-center justify-between mb-4">
-                <Sprout className="w-8 h-8 text-emerald-400" />
-                <span className="text-2xl font-bold text-white">12</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center">
+                  <Droplets className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-2xl font-bold text-blue-700">85%</span>
               </div>
-              <h3 className="text-green-300 text-sm font-medium">Crop Types</h3>
+              <h3 className="font-semibold text-gray-800 mb-1">Soil Moisture</h3>
+              <p className="text-sm text-gray-600">Optimal levels</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-green-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-700/50"
+              className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-green-200/50 shadow-lg hover:shadow-xl transition-all"
             >
               <div className="flex items-center justify-between mb-4">
-                <Trophy className="w-8 h-8 text-yellow-400" />
-                <span className="text-2xl font-bold text-white">Level 8</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center">
+                  <Sun className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-2xl font-bold text-yellow-700">28°C</span>
               </div>
-              <h3 className="text-green-300 text-sm font-medium">Farm Level</h3>
+              <h3 className="font-semibold text-gray-800 mb-1">Temperature</h3>
+              <p className="text-sm text-gray-600">Perfect weather</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-green-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-700/50"
+              className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-green-200/50 shadow-lg hover:shadow-xl transition-all"
             >
               <div className="flex items-center justify-between mb-4">
-                <Users className="w-8 h-8 text-blue-400" />
-                <span className="text-2xl font-bold text-white">45</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
+                  <TrendingUp className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-2xl font-bold text-purple-700">+15%</span>
               </div>
-              <h3 className="text-green-300 text-sm font-medium">Workers</h3>
+              <h3 className="font-semibold text-gray-800 mb-1">Growth Rate</h3>
+              <p className="text-sm text-gray-600">Above average</p>
             </motion.div>
           </div>
 
-          {/* Tab Navigation */}
-          <div className="flex justify-center mb-8">
-            <div className="bg-green-800/50 rounded-lg p-1 backdrop-blur-sm border border-green-700/50">
-              {['farm', 'equipment', 'market'].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-6 py-3 rounded-md text-sm font-medium transition-all capitalize ${
-                    activeTab === tab
-                      ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white'
-                      : 'text-green-300 hover:text-white'
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Farm Management */}
-          {activeTab === 'farm' && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {crops.map((crop) => (
-                <div key={crop.id} className="bg-green-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-700/50 hover:border-green-500/50 transition-all group">
-                  <div className="flex justify-between items-start mb-4">
-                    <Sprout className="w-8 h-8 text-green-400" />
-                    <span className="text-xs px-2 py-1 bg-green-600/30 text-green-300 rounded-full">
-                      {crop.season}
-                    </span>
-                  </div>
-                  <h4 className="text-xl font-semibold text-white mb-2">{crop.name}</h4>
-                  <div className="space-y-3">
-                    <div>
-                      <div className="flex justify-between text-sm mb-1">
-                        <span className="text-green-300">Growth</span>
-                        <span className="text-white">{crop.growth}%</span>
-                      </div>
-                      <div className="w-full bg-green-900/50 rounded-full h-2">
-                        <div 
-                          className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full transition-all"
-                          style={{ width: `${crop.growth}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-green-300 text-sm">Profit</span>
-                      <span className="text-yellow-400 font-semibold">${crop.profit}</span>
-                    </div>
-                  </div>
-                  <button className="w-full mt-4 px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-600 transition-colors">
-                    Harvest
+          {/* Main Dashboard */}
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Crops Section */}
+            <div className="lg:col-span-2">
+              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 border border-green-200/50 shadow-lg">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-2xl font-bold text-gray-800 flex items-center">
+                    <Wheat className="w-6 h-6 text-green-600 mr-3" />
+                    My Crops
+                  </h3>
+                  <button className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl hover:shadow-lg transition-all font-medium">
+                    Plant New
                   </button>
                 </div>
-              ))}
-            </motion.div>
-          )}
+                
+                <div className="space-y-4">
+                  {crops.map((crop, index) => (
+                    <motion.div
+                      key={crop.id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200/50 hover:shadow-md transition-all"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center">
+                          <Sprout className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-800">{crop.name}</h4>
+                          <p className="text-sm text-gray-600">{crop.season} • ${crop.profit} profit</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-4">
+                        <div className="text-right">
+                          <p className="text-sm text-gray-600">Growth</p>
+                          <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: `${crop.growth}%` }}
+                              transition={{ duration: 1, delay: index * 0.2 }}
+                              className="h-full bg-gradient-to-r from-green-500 to-emerald-600"
+                            />
+                          </div>
+                        </div>
+                        <span className="font-bold text-green-700">{crop.growth}%</span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
 
-          {/* Equipment Management */}
-          {activeTab === 'equipment' && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="grid md:grid-cols-2 gap-6"
-            >
-              {equipment.map((item) => (
-                <div key={item.id} className="bg-green-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-700/50">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <Tractor className="w-8 h-8 text-green-400" />
-                      <div>
-                        <h4 className="text-xl font-semibold text-white">{item.name}</h4>
-                        <p className="text-green-300 text-sm">Condition: {item.condition}</p>
-                      </div>
+            {/* Weather & Equipment Sidebar */}
+            <div className="space-y-6">
+              {/* Weather Widget */}
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-200/50 shadow-lg">
+                <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                  <CloudRain className="w-5 h-5 text-blue-600 mr-2" />
+                  Weather Forecast
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Sun className="w-5 h-5 text-yellow-500" />
+                      <span className="text-gray-700">Today</span>
                     </div>
-                    <span className="text-2xl font-bold text-white">{item.efficiency}%</span>
+                    <span className="font-semibold text-gray-800">28°C</span>
                   </div>
-                  <div className="space-y-3">
-                    <div>
-                      <div className="flex justify-between text-sm mb-1">
-                        <span className="text-green-300">Efficiency</span>
-                        <span className="text-white">{item.efficiency}%</span>
-                      </div>
-                      <div className="w-full bg-green-900/50 rounded-full h-2">
-                        <div 
-                          className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full"
-                          style={{ width: `${item.efficiency}%` }}
-                        ></div>
-                      </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <CloudRain className="w-5 h-5 text-blue-500" />
+                      <span className="text-gray-700">Tomorrow</span>
                     </div>
-                    <div className="flex space-x-2">
-                      <button className="flex-1 px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-600 transition-colors">
-                        Upgrade
-                      </button>
-                      <button className="flex-1 px-4 py-2 border border-green-600 text-green-300 rounded-lg hover:bg-green-800 transition-colors">
-                        Repair
-                      </button>
+                    <span className="font-semibold text-gray-800">22°C</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Wind className="w-5 h-5 text-gray-500" />
+                      <span className="text-gray-700">Wind</span>
                     </div>
+                    <span className="font-semibold text-gray-800">12 km/h</span>
                   </div>
                 </div>
-              ))}
-            </motion.div>
-          )}
+              </div>
 
-          {/* Market */}
-          {activeTab === 'market' && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-12"
-            >
-              <BarChart3 className="w-16 h-16 text-green-400 mx-auto mb-6" />
-              <h3 className="text-2xl font-bold text-white mb-4">Global Agricultural Market</h3>
-              <p className="text-green-300 max-w-2xl mx-auto mb-8">
-                Trade your crops in the global marketplace. Monitor prices, negotiate deals, 
-                and expand your agricultural business worldwide.
-              </p>
-              <button className="px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all">
-                Open Market
-              </button>
-            </motion.div>
-          )}
+              {/* Equipment Status */}
+              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-green-200/50 shadow-lg">
+                <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                  <Tractor className="w-5 h-5 text-green-600 mr-2" />
+                  Equipment
+                </h3>
+                <div className="space-y-3">
+                  {equipment.slice(0, 3).map((item, index) => (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="flex items-center justify-between p-3 bg-gray-50 rounded-xl"
+                    >
+                      <div>
+                        <p className="font-medium text-gray-800 text-sm">{item.name}</p>
+                        <p className="text-xs text-gray-600">{item.condition}</p>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-sm font-semibold text-green-600">{item.efficiency}%</span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+                <button className="w-full mt-4 px-4 py-2 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 rounded-xl hover:from-gray-200 hover:to-gray-300 transition-all font-medium">
+                  View All Equipment
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Action Bar */}
-      <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2">
-        <div className="bg-green-800/90 backdrop-blur-sm rounded-full px-6 py-3 border border-green-700/50 flex items-center space-x-4">
-          <button className="p-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full hover:from-green-600 hover:to-emerald-700 transition-all">
-            <Play className="w-5 h-5" />
-          </button>
-          <div className="flex items-center space-x-2 text-white">
-            <Calendar className="w-4 h-4" />
-            <span className="text-sm">Day 127 - Summer</span>
-          </div>
-          <button className="px-4 py-2 bg-green-700 text-white rounded-full hover:bg-green-600 transition-colors text-sm">
-            Save Game
-          </button>
-        </div>
-      </div>
-
       {/* Footer */}
-      <footer className="bg-green-900 border-t border-green-700/50 py-8 px-4 sm:px-6 lg:px-8 mt-16">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
-              <Sprout className="w-5 h-5 text-white" />
+      <footer className="bg-white/80 backdrop-blur-sm border-t border-green-100 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="flex items-center justify-center space-x-2 mb-4">
+              <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-emerald-500 rounded-lg flex items-center justify-center">
+                <Sprout className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
+                AgriVerse
+              </span>
             </div>
-            <span className="text-xl font-bold text-white">AgriVerse</span>
-          </div>
-          <p className="text-green-400 mb-4">Professional Farm Simulation - Build Your Agricultural Empire</p>
-          <div className="flex justify-center space-x-6 text-green-400">
-            <a href="#" className="hover:text-white transition-colors">Tutorial</a>
-            <a href="#" className="hover:text-white transition-colors">Leaderboard</a>
-            <a href="#" className="hover:text-white transition-colors">Community</a>
-            <a href="#" className="hover:text-white transition-colors">Support</a>
+            <p className="text-gray-600">
+              © 2024 AgriVerse. Cultivating the future of farming simulation.
+            </p>
           </div>
         </div>
       </footer>
