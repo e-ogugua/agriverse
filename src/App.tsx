@@ -2,19 +2,20 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { 
   Sprout, 
-  Tractor, 
-  Coins, 
+  Droplets, 
+  Sun, 
   TrendingUp, 
   Settings,
-  Wheat,
-  Droplets,
-  Sun,
-  CloudRain,
-  Wind,
-  Leaf,
+  Bell,
+  User,
   TreePine,
   Apple,
-  Carrot
+  Carrot,
+  Leaf,
+  Wheat,
+  Wind,
+  Tractor,
+  CloudRain
 } from 'lucide-react';
 
 function App() {
@@ -33,54 +34,43 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-lime-50">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-lime-50 relative overflow-hidden">
+      {/* Animated Farm Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Floating Leaves */}
+        <motion.div
+          className="absolute top-20 left-10 text-6xl animate-float-gentle"
+          animate={{
+            y: [0, -20, 0],
+            rotate: [0, 10, 0]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          🍃
+        </motion.div>
+      </div>
+
       {/* Header */}
-      <header className="bg-white/95 backdrop-blur-xl border-b border-green-100 sticky top-0 z-50 shadow-sm">
+      <header className="bg-white/80 backdrop-blur-md border-b border-farm-green/20 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-600 via-emerald-500 to-lime-500 rounded-2xl flex items-center justify-center shadow-lg">
-                  <Sprout className="w-7 h-7 text-white" />
-                </div>
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-                  <Sun className="w-2.5 h-2.5 text-white" />
-                </div>
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
-                  AgriVerse
-                </h1>
-                <p className="text-sm text-green-600 font-medium">Smart Farm Simulation</p>
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center space-x-3">
+              <Bell className="w-5 h-5 text-farm-green hover:text-grass-green cursor-pointer transition-colors animate-float-gentle" />
+              <Settings className="w-5 h-5 text-farm-green hover:text-grass-green cursor-pointer transition-colors animate-float-gentle" />
+              <div className="w-8 h-8 bg-farm-green rounded-full flex items-center justify-center animate-grow">
+                <User className="w-4 h-4 text-white" />
               </div>
             </div>
-            <nav className="hidden lg:flex items-center space-x-8">
-              <a href="#" className="text-gray-700 hover:text-green-600 font-semibold transition-colors relative group">
-                My Farm
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all group-hover:w-full"></span>
-              </a>
-              <a href="#" className="text-gray-700 hover:text-green-600 font-semibold transition-colors relative group">
-                Marketplace
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all group-hover:w-full"></span>
-              </a>
-              <a href="#" className="text-gray-700 hover:text-green-600 font-semibold transition-colors relative group">
-                Equipment
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all group-hover:w-full"></span>
-              </a>
-              <a href="#" className="text-gray-700 hover:text-green-600 font-semibold transition-colors relative group">
-                Weather
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-600 transition-all group-hover:w-full"></span>
-              </a>
+            <nav className="hidden md:flex space-x-6">
+              <button className="text-farm-green hover:text-grass-green font-medium transition-colors hover:animate-pulse">Dashboard</button>
+              <button className="text-farm-green hover:text-grass-green font-medium transition-colors hover:animate-pulse">Crops</button>
+              <button className="text-farm-green hover:text-grass-green font-medium transition-colors hover:animate-pulse">Weather</button>
+              <button className="text-farm-green hover:text-grass-green font-medium transition-colors hover:animate-pulse">Market</button>
             </nav>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-3 bg-gradient-to-r from-green-100 to-emerald-100 px-4 py-2 rounded-xl border border-green-200">
-                <Coins className="w-5 h-5 text-green-600" />
-                <span className="font-bold text-green-800">$24,750</span>
-              </div>
-              <button className="px-6 py-2.5 bg-gradient-to-r from-green-600 via-emerald-500 to-lime-500 text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all font-semibold shadow-md">
-                <Settings className="w-4 h-4" />
-              </button>
-            </div>
           </div>
         </div>
       </header>
@@ -337,15 +327,13 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-emerald-500 rounded-lg flex items-center justify-center">
-                <Sprout className="w-5 h-5 text-white" />
+              <div className="w-10 h-10 bg-gradient-to-r from-farm-green to-leaf-green rounded-full flex items-center justify-center animate-grow">
+                <Sprout className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">
-                AgriVerse
-              </span>
+              <span className="text-xl font-bold text-earth-brown font-nature">AgriVerse</span>
             </div>
             <p className="text-gray-600">
-              © 2024 AgriVerse. Cultivating the future of farming simulation.
+              &copy; 2024 AgriVerse. Cultivating the future of farming simulation.
             </p>
           </div>
         </div>
