@@ -1,35 +1,138 @@
 @import "tailwindcss";
 
-@theme inline {
-  --color-farm-green: #22C55E;
-  --color-earth-brown: #92400E;
-  --color-crop-yellow: #EAB308;
-  --color-sky-blue: #3B82F6;
-  --color-leaf-green: #16A34A;
-  --color-soil-brown: #A16207;
-  --color-sunshine-yellow: #FACC15;
-  --color-water-blue: #0EA5E9;
-  --color-grass-green: #15803D;
-  --color-harvest-orange: #EA580C;
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+
+@theme {
+  /* Natural Greens */
+  --color-moss: #5C6B3F;
+  --color-sage: #8A9B68;
+  --color-olive: #6B8C42;
+  --color-forest: #2C5E1A;
+  --color-mint: #C1DFC4;
   
-  --font-family-nature: 'Comfortaa', sans-serif;
+  /* Earthy Tones */
+  --color-terracotta: #E07A5F;
+  --color-sand: #E6D5B8;
+  --color-clay: #B38B6D;
+  --color-soil: #5D4037;
+  --color-stone: #8B8B8B;
   
+  /* Accent Colors */
+  --color-sunflower: #FFD700;
+  --color-tomato: #FF6347;
+  --color-sky: #87CEEB;
+  
+  /* Fonts */
+  --font-primary: 'Nunito', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+  
+  /* Animations */
   --animate-grow: grow 4s ease-in-out infinite;
   --animate-sway: sway 6s ease-in-out infinite;
-  --animate-float-gentle: float-gentle 8s ease-in-out infinite;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-pulse: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* Keyframe Animations */
 @keyframes grow {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
 }
 
 @keyframes sway {
-  0%, 100% { transform: rotate(-2deg); }
-  50% { transform: rotate(2deg); }
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
 }
 
-@keyframes float-gentle {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Base Styles */
+:root {
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  color: var(--color-soil);
+  background-color: #F9F9F7;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-forest);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--color-olive);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-forest);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation */
+.nav-link {
+  color: var(--color-soil);
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-olive);
+}
+
+/* Form Elements */
+input, select, textarea {
+  border: 1px solid var(--color-sand);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--color-olive);
+  box-shadow: 0 0 0 3px rgba(107, 140, 66, 0.2);
+  outline: none;
+}
+
+/* Utility Classes */
+.bg-natural-gradient {
+  background: linear-gradient(135deg, #F9F9F7 0%, #E6E6E1 100%);
+}
+
+.text-muted {
+  color: var(--color-stone);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

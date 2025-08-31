@@ -1,37 +1,158 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import React from 'react';
+import { motion } from 'framer-motion';
 import { 
-  Sprout, 
-  Droplets, 
-  Sun, 
-  TrendingUp, 
-  Settings,
-  Bell,
-  User,
-  TreePine,
-  Apple,
-  Carrot,
-  Leaf,
-  Wheat,
-  Wind,
-  Tractor,
-  CloudRain
+  Sprout, Droplets, Sun, TrendingUp, Settings, Bell, User,
+  TreePine, Apple, Carrot, Leaf, Wheat, Wind, Tractor,
+  CloudRain, Droplet as DropletIcon, Sun as SunIcon, Thermometer
 } from 'lucide-react';
 
-function App() {
-  const [crops] = useState([
-    { id: 1, name: 'Wheat', growth: 75, profit: 1250, season: 'Summer' },
-    { id: 2, name: 'Corn', growth: 45, profit: 890, season: 'Spring' },
-    { id: 3, name: 'Tomatoes', growth: 90, profit: 2100, season: 'Summer' },
-    { id: 4, name: 'Carrots', growth: 60, profit: 750, season: 'Fall' }
-  ]);
+type FarmMetric = {
+  id: string;
+  name: string;
+  value: string | number;
+  icon: React.ReactNode;
+  trend: 'up' | 'down' | 'neutral';
+  change: string;
+};
 
+type Crop = {
+  id: string;
+  name: string;
+  type: 'fruit' | 'vegetable' | 'grain' | 'herb';
+  plantedDate: string;
+  harvestDate: string;
+  progress: number;
+  status: 'growing' | 'ready' | 'needs-attention';
+  season?: string;
+  profit?: number;
+  growth?: number;
+};
+
+const App: React.FC = () => {
+  // State variables (commented out since they're not currently used)
+  // const [sidebarOpen, setSidebarOpen] = useState(false);
+  // const [activeTab, setActiveTab] = useState('dashboard');
+  
+  // Mock equipment data with required properties
   const equipment = [
-    { id: 1, name: 'Tractor Pro', efficiency: 95, condition: 'Excellent' },
-    { id: 2, name: 'Harvester X1', efficiency: 88, condition: 'Good' },
-    { id: 3, name: 'Irrigation System', efficiency: 92, condition: 'Excellent' },
-    { id: 4, name: 'Seed Planter', efficiency: 85, condition: 'Fair' }
+    { 
+      id: 1, 
+      name: 'Tractor', 
+      status: 'operational',
+      condition: 'good',
+      efficiency: 0.95
+    },
+    { 
+      id: 2, 
+      name: 'Irrigation System', 
+      status: 'maintenance',
+      condition: 'needs_repair',
+      efficiency: 0.65
+    },
+    { 
+      id: 3, 
+      name: 'Harvester', 
+      status: 'operational',
+      condition: 'excellent',
+      efficiency: 0.92
+    }
+  ] as const;
+  
+  // Marked with underscore to indicate it's intentionally unused for now
+  const _farmMetrics: FarmMetric[] = [
+    {
+      id: 'temperature',
+      name: 'Temperature',
+      value: '22°C',
+      icon: <Thermometer className="w-6 h-6 text-terracotta" />,
+      trend: 'up',
+      change: '+2°C'
+    },
+    {
+      id: 'humidity',
+      name: 'Humidity',
+      value: '65%',
+      icon: <DropletIcon className="w-6 h-6 text-sky" />,
+      trend: 'down',
+      change: '-5%'
+    },
+    {
+      id: 'soil-moisture',
+      name: 'Soil Moisture',
+      value: '42%',
+      icon: <Droplets className="w-6 h-6 text-sky-500" />,
+      trend: 'neutral',
+      change: '0%'
+    },
+    {
+      id: 'light',
+      name: 'Light',
+      value: 'High',
+      icon: <SunIcon className="w-6 h-6 text-yellow-500" />,
+      trend: 'up',
+      change: '10%'
+    }
   ];
+
+  const crops: Crop[] = [
+    {
+      id: 'tomato',
+      name: 'Tomatoes',
+      type: 'vegetable',
+      plantedDate: '2023-05-15',
+      harvestDate: '2023-08-30',
+      progress: 85,
+      status: 'growing'
+    },
+    {
+      id: 'wheat',
+      name: 'Wheat',
+      type: 'grain',
+      plantedDate: '2023-04-10',
+      harvestDate: '2023-09-20',
+      progress: 65,
+      status: 'growing'
+    },
+    {
+      id: 'basil',
+      name: 'Basil',
+      type: 'herb',
+      plantedDate: '2023-06-01',
+      harvestDate: '2023-07-30',
+      progress: 95,
+      status: 'ready'
+    }
+  ];
+
+  // Helper function to get status color
+  // Marked with underscore to indicate it's intentionally unused for now
+  const _getStatusColor = (status: Crop['status']) => {
+    switch (status) {
+      case 'ready':
+        return 'bg-green-100 text-green-800';
+      case 'needs-attention':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-yellow-100 text-yellow-800';
+    }
+  };
+
+  // Helper function to get crop icon
+  // Marked with underscore to indicate it's intentionally unused for now
+  const _getCropIcon = (type: Crop['type']) => {
+    switch (type) {
+      case 'fruit':
+        return <Apple className="w-5 h-5 text-red-500" />;
+      case 'vegetable':
+        return <Carrot className="w-5 h-5 text-orange-500" />;
+      case 'grain':
+        return <Wheat className="w-5 h-5 text-amber-600" />;
+      case 'herb':
+        return <Leaf className="w-5 h-5 text-green-600" />;
+      default:
+        return <Sprout className="w-5 h-5 text-green-500" />;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-lime-50 relative overflow-hidden">
