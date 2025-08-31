@@ -1,3 +1,35 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme inline {
+  --color-farm-green: #22C55E;
+  --color-earth-brown: #92400E;
+  --color-crop-yellow: #EAB308;
+  --color-sky-blue: #3B82F6;
+  --color-leaf-green: #16A34A;
+  --color-soil-brown: #A16207;
+  --color-sunshine-yellow: #FACC15;
+  --color-water-blue: #0EA5E9;
+  --color-grass-green: #15803D;
+  --color-harvest-orange: #EA580C;
+  
+  --font-family-nature: 'Comfortaa', sans-serif;
+  
+  --animate-grow: grow 4s ease-in-out infinite;
+  --animate-sway: sway 6s ease-in-out infinite;
+  --animate-float-gentle: float-gentle 8s ease-in-out infinite;
+}
+
+@keyframes grow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
